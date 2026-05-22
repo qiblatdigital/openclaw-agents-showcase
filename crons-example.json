@@ -1,0 +1,53 @@
+{
+  "crons": [
+    {
+      "id": "ihsg-daily-scanner",
+      "name": "IHSG Daily Market Scanner",
+      "schedule": "0 7 * * 1-5",
+      "timezone": "Asia/Jakarta",
+      "timeout": 1200,
+      "agent": "market-intel",
+      "task": "Scan IHSG market conditions, analyze top movers, technical signals for watchlist stocks, and push formatted report to WhatsApp group",
+      "target": {
+        "type": "whatsapp-group",
+        "id": "indonesia-market-group"
+      }
+    },
+    {
+      "id": "dividend-hunter-lq45",
+      "name": "LQ45 Dividend Hunter",
+      "schedule": "0 8 * * 1",
+      "timezone": "Asia/Jakarta",
+      "timeout": 600,
+      "agent": "market-intel",
+      "task": "Analyze LQ45 stocks for upcoming dividends, ex-dates, yields, and accumulation opportunities"
+    },
+    {
+      "id": "ipo-hunter-bei",
+      "name": "BEI IPO Tracker",
+      "schedule": "0 16 * * 2,5",
+      "timezone": "Asia/Jakarta",
+      "timeout": 600,
+      "agent": "market-intel",
+      "task": "Track upcoming IPOs on BEI, analyze prospectus highlights, and flag interesting opportunities"
+    },
+    {
+      "id": "lk-monitor-portfolio",
+      "name": "Quarterly Earnings Monitor",
+      "schedule": "0 7 * * 1-5",
+      "timezone": "Asia/Jakarta",
+      "timeout": 600,
+      "agent": "market-intel",
+      "task": "Check for new quarterly/annual financial reports from portfolio holdings (BMRI, BBRI, TLKM, PWON, UNVR, SIDO, CDIA) and provide analysis"
+    },
+    {
+      "id": "finance-monthly-report",
+      "name": "Monthly Finance Report",
+      "schedule": "0 8 1 * *",
+      "timezone": "Asia/Jakarta",
+      "timeout": 300,
+      "agent": "finance",
+      "task": "Generate monthly expense breakdown by category (%), compare with previous month, flag anomalies, push to WhatsApp and append to Google Sheet"
+    }
+  ]
+}

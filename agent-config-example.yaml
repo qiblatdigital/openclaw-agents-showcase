@@ -1,0 +1,91 @@
+# OpenClaw Agent Configuration (Sanitized)
+# Multi-agent setup for personal automation
+
+gateway:
+  host: "0.0.0.0"
+  port: 3000
+  model_routing: "cost-optimized"
+
+channels:
+  whatsapp:
+    provider: "whatsapp-business"
+    capabilities:
+      - direct_message
+      - group_message
+      - media_upload
+      - reactions
+
+agents:
+  finance:
+    name: "VelAi Finance"
+    persona: "Konsultan Keuangan Cerewet"
+    mode: "proactive"
+    triggers:
+      - type: "message"
+        pattern: "expense|income|transaction"
+      - type: "group"
+        target: "family-finance-group"
+    capabilities:
+      - transaction_logging
+      - budget_analysis
+      - debt_tracking
+      - goal_monitoring
+      - anomaly_detection
+    api:
+      endpoint: "http://localhost:8888"
+      database: "postgresql://localhost:5432/velai-finance-v2"
+    reporting:
+      monthly: true
+      weekly_summary: true
+      anomaly_alerts: true
+
+  market-intel:
+    name: "Market Intelligence"
+    mode: "scheduled"
+    triggers:
+      - type: "cron"
+        ref: "crons-example.json"
+    capabilities:
+      - technical_analysis
+      - fundamental_screening
+      - dividend_tracking
+      - ipo_monitoring
+      - earnings_analysis
+    watchlist:
+      - BMRI
+      - BBRI
+      - TLKM
+      - PWON
+      - UNVR
+      - SIDO
+      - CDIA
+    output:
+      target: "whatsapp-group"
+      format: "structured-report"
+
+  crm:
+    name: "CRM Lead Engine"
+    mode: "automated"
+    capabilities:
+      - web_scraping
+      - lead_scoring
+      - whatsapp_outreach
+      - campaign_tracking
+    api:
+      endpoint: "http://localhost:8081"
+      language: "golang"
+    pipeline:
+      scraper: "python"
+      schedule: "daily 01:00 WIB"
+      volume: "~1000 leads/month"
+
+memory:
+  type: "file-based"
+  daily_logs: "memory/YYYY-MM-DD.md"
+  long_term: "MEMORY.md"
+  heartbeat: "memory/heartbeat-state.json"
+
+backup:
+  schedule: "daily 02:00 WIB"
+  destination: "google-drive"
+  retention: "7 days local, unlimited cloud"
