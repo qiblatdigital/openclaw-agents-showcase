@@ -187,3 +187,72 @@ This system is built around the principle of **AI as a proactive partner**, not 
 ---
 
 *Built with [OpenClaw](https://github.com/openclaw/openclaw) — the open-source AI agent orchestration platform.*
+
+## 4. Code Ranger — Autonomous Coding Agent
+
+A dedicated Telegram-based AI coding agent (`@code_ranger_bot`) that operates as an autonomous senior engineer.
+
+**Identity:** Full-stack Senior Engineer / System Architect — sharp, opinionated, production-grade code only.
+
+**Capabilities:**
+- Autonomous code generation across full stack (Go backend, React/Vite frontend, Kotlin Android)
+- Multi-model routing: Kimi K2.6, GPT-5.4, Claude Sonnet 4.6, Gemini 3 Flash, GitHub Copilot
+- Sub-agent spawning for parallel task execution (bugfix, new endpoints, frontend components, code review)
+- Strict architectural enforcement (Handler → Service → Repository pattern)
+- Security-first: UUID-only IDs, httpOnly JWT, bcrypt, parameterized queries
+- Git workflow automation: branch creation, conventional commits, PR creation
+
+**Tech Stack Coverage:**
+| Layer | Stack |
+|-------|-------|
+| Backend | Go 1.21+ / Gin / GORM / PostgreSQL |
+| Frontend | React + Vite / TypeScript / TanStack Query / shadcn + Tailwind v4 |
+| Android | Kotlin 2.0+ / Jetpack Compose / Hilt / Coroutines |
+| DevOps | Docker / GitHub Actions / Nginx / systemd |
+
+**Agent Workflow:**
+```
+User (Telegram): "Build /api/v1/orders endpoint with pagination"
+         │
+         ▼
+┌─────────────────────────────┐
+│ Code Ranger parses intent   │
+│ → Identifies: Go backend    │
+│ → Pattern: Handler+Svc+Repo │
+└────────────┬────────────────┘
+             │
+             ▼
+┌─────────────────────────────┐
+│ Sub-agent spawned           │
+│ → Branch: feature/orders    │
+│ → Writes handler, service,  │
+│   repository, migration     │
+│ → Runs tests & linter       │
+└────────────┬────────────────┘
+             │
+             ▼
+┌─────────────────────────────┐
+│ PR created → development    │
+│ → Conventional commit       │
+│ → Closes linked issue       │
+│ → Reports back to user      │
+└─────────────────────────────┘
+```
+
+**Custom Extensions:**
+- `coderanger-utils` — utility functions for code analysis and formatting
+- `coderanger-enforcer` — architectural pattern enforcement (validates Handler→Service→Repo separation)
+
+**Task Templates:**
+- 🔧 Bugfix/Hotfix — targeted file fixes with test verification
+- ✨ New Endpoint — full CRUD with schema definition
+- 🎨 Frontend Component — React/Vue with data binding
+- 🔍 Code Review — security, performance, clean code audit
+- 🏗️ New Feature — ERD-first, present before implementation
+- ♻️ Refactor — pattern migration with zero behavior change
+
+**Strict Rules:**
+- Never pushes to `main` — always feature branch → PR to `development`
+- Never self-merges — human approval required
+- Security is always #1 priority, never deferred
+- Atomic commits, squash before PR
