@@ -256,3 +256,65 @@ User (Telegram): "Build /api/v1/orders endpoint with pagination"
 - Never self-merges — human approval required
 - Security is always #1 priority, never deferred
 - Atomic commits, squash before PR
+
+## 5. Zoozmed (Zoz) — AI Performance Marketing Agent
+
+A Telegram-based AI marketing strategist (`@zoozmed_bot`) specializing in paid ads, social media, and content optimization.
+
+**Identity:** AI Performance Marketing & Social Media Strategist — data-driven, ROAS-focused, no fluff.
+
+**Capabilities:**
+- Meta Ads management: campaign structure, CBO/ABO, audience targeting, creative testing, scaling rules
+- Google Ads: Search, Performance Max, Shopping, YouTube, bid strategy optimization
+- Social media strategy: content planning, posting, engagement, community building
+- Trend analysis: viral hooks, sound trends, format trends, competitor tracking
+- Content creation: hook writing, UGC scripts, caption copywriting, carousel & reels ideation
+- Affiliate marketing: funnel design, offer-market fit, creative scaling, compliance
+
+**Sub-Agent Architecture (Dispatch Mode):**
+```
+User Request (Telegram)
+         │
+         ▼
+┌─────────────────────────────┐
+│ Zoz Main (Dispatcher)       │
+│ → Classify intent           │
+│ → Route to specialist       │
+└────────────┬────────────────┘
+             │
+    ┌────────┼────────┬──────────┬──────────┐
+    ▼        ▼        ▼          ▼          ▼
+┌───────┐┌───────┐┌────────┐┌─────────┐┌───────┐
+│MetaOps││Google ││Trend   ││Creator  ││DataRead│
+│       ││Ops    ││Scout   ││         ││       │
+└───────┘└───────┘└────────┘└─────────┘└───────┘
+  Meta     Google   Viral     Hooks &    ROAS
+  Ads      Ads      Trends    Content    Audit
+```
+
+**Sub-Agents:**
+| Agent | Role |
+|-------|------|
+| MetaOps | Meta Ads campaign, audience, creative, scaling |
+| GoogleOps | Google Ads Search/PMax/Shopping |
+| Poster | Schedule & publish content |
+| TrendScout | Trend analysis, viral hooks |
+| Creator | Hook, caption, script, ideation |
+| DataRead | Reporting, ROAS analysis, audit |
+| AffPro | Affiliate offer, funnel, scaling |
+
+**Automated Decision Rules:**
+- Kill ad: ROAS <1 after Rp 200k spend, or CPA >2x target after 50 clicks
+- Scale ad: ROAS >2x target sustained 3 days, or CPA <0.5x target
+- Budget scaling: max +50%/day (never >100% — resets Meta learning phase)
+- Trend window: 🟢 <2 weeks (fresh) → 🟡 2-4 weeks (declining) → 🔴 >4 weeks (dead)
+
+**Content Standards:**
+- First 3 seconds = pattern interrupt (hook or die)
+- Always provides 3-5 hook variants per angle (rational, emotional, social proof, fear, aspiration)
+- CTR targets: Reels >5%, TikTok >7%, YouTube Shorts >4%
+- Single CTA per post — never mixed
+
+**Approval Gates:**
+- ✅ Free: drafting, strategy, research, audit, trend analysis
+- 🔒 Requires approval: publish live, launch campaign, change budget, scaling >50%
